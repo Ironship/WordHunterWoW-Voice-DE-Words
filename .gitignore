@@ -1,0 +1,22 @@
+# The audio, which is everything this pack exists to carry.
+#
+# Not committing it is a decision that has not been taken yet, not one that has
+# been taken against it. The corpus is around seven gigabytes across twelve
+# packs; whether that belongs in git history, in a release asset, or somewhere
+# else entirely is the owner's call and it is still open. Ignoring it for now
+# leaves both doors open -- nothing is in history that a later change of mind
+# would have to be rewritten to undo, and lifting the rule is deleting one line.
+#
+# The consequence, while the rule stands: a checkout of this repository is not
+# installable. Tools/build_pack.py in the engine repository assembles the
+# playable pack out of these files plus the clips.
+/sounds/
+
+/release/
+/curseforge/
+*.zip
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+desktop.ini

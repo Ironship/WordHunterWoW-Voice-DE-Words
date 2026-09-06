@@ -1,0 +1,18 @@
+# How the CurseForge packager should build this sound pack.
+#
+# It packages a tagged commit, and this repository does not hold the audio --
+# see .gitignore, where that is set out as a decision still to be made. So what
+# the packager builds today is the manifest and Part.lua and not one clip: an
+# addon that loads, declares what it covers, and plays nothing.
+#
+# That is written down here rather than left to be found out. Whoever tags this
+# for release either takes the audio out of .gitignore first or attaches the
+# clips to the release some other way, because the packager's output as it
+# stands is a silent pack that is indistinguishable from a working one until
+# somebody opens a quest.
+package-as: WordHunterWoW-Voice-DE-Words
+
+enable-nolib-creation: no
+
+ignore:
+  - sounds
