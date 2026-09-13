@@ -3,14 +3,15 @@
 Single German words, spoken. This is the pack the engine reaches for when you
 click a word, rather than when you open a quest.
 
-**It holds nothing yet: 0 clips, 0 hours.** The dictionary is 104,274 entries
-and it is last in the generation order, behind the eleven expansions of quest
-text. The repository exists ahead of the audio so the pack has somewhere to land
-and so `Part.lua` — the file that tells the engine a word pack is installed at
-all — is under version control from the start.
+**104,274 clips, 28.9 hours.** One for every entry in the dictionary. It was
+last in the generation order, behind the eleven expansions of quest text, and
+`Part.lua` — the file that tells the engine a word pack is installed at all —
+was under version control from the start, so the pack had somewhere to land.
 
-Installing it today is harmless and pointless. It registers, the engine asks it
-for a word, the file is not there, and nothing plays.
+Every clip has been listened to by a speech recogniser and checked against the
+word it was asked for. That pass is what the 1.0.1 audio is: the reader, given
+three characters and nothing else to align on, would sometimes invent several
+seconds of confident German around the word, and those clips are respoken.
 
 Unlike a quest pack this one declares no range. A word's clip is named by a hash
 and there is nothing to compare, so the engine simply takes the one word pack it
@@ -22,16 +23,14 @@ Everything that decides when to play a clip is in the engine addon,
 [QuestWordHunter — German Voiceover](https://github.com/Ironship/WordHunterWoW-Voice-DE).
 It is a hard dependency: without it the client will not load this pack at all.
 
-## The audio is not in this repository
+## The audio is in this repository
 
-`sounds/` is gitignored, and `.gitignore` says why: there is none of it here
-yet, and it will be around seven gigabytes across the twelve packs when the
-whole corpus has been read, and how that should ship has not been decided. So a
-checkout of this repository is not installable by itself — it is the manifest,
-the licence and the duration table, and no sound.
+`sounds/` is committed, and `.gitignore` says why. It is 805 MB here, out of
+about six gigabytes across the twelve packs. So a checkout of this repository is
+installable by itself: copy the folder into `Interface/AddOns` and it plays.
 
-The playable pack is assembled by `Tools/build_pack.py` in the engine
-repository, which takes these files and adds the clips:
+`Tools/build_pack.py` in the engine repository assembles the same thing, and is
+the quicker route when the clips have just been regenerated:
 
 ```
 python Tools/build_pack.py --only Words --out "…/Interface/AddOns"
