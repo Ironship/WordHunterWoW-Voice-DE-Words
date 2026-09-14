@@ -18,11 +18,19 @@ Unlike a quest pack this one declares no range. A word's clip is named by a hash
 and there is nothing to compare, so the engine simply takes the one word pack it
 finds.
 
-## It does nothing on its own
+## It does nothing on its own, and it needs two addons rather than one
 
 Everything that decides when to play a clip is in the engine addon,
 [QuestWordHunter — German Voiceover](https://github.com/Ironship/WordHunterWoW-Voice-DE).
-It is a hard dependency: without it the client will not load this pack at all.
+
+It also needs [QuestWordHunter](https://github.com/Ironship/WordHunterWoW)
+itself, which the quest packs do not. A quest pack plays when a quest window
+opens, and the engine watches for that on its own. A word plays when somebody
+clicks one, and clicking a word is something only QuestWordHunter's panel
+offers — so without it these clips are 104,274 files nothing can reach.
+
+Both are hard dependencies: without either, the client will not load this pack
+at all.
 
 ## The audio is in this repository
 
