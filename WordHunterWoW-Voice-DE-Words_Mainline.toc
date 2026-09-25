@@ -1,4 +1,4 @@
-## Interface: 120100
+## Interface: 120100, 120105
 ## Title: QuestWordHunter - German Voiceover: Words
 ## Notes: German audio for single dictionary words. Needs WordHunterWoW-Voice-DE.
 ## IconTexture: Interface\AddOns\WordHunterWoW-Voice-DE-Words\icon
