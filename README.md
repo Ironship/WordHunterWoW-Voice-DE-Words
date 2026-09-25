@@ -3,7 +3,7 @@
 Single German words, spoken. This is the pack the engine reaches for when you
 click a word, rather than when you open a quest.
 
-**104,274 clips, 28.8 hours.** One for every entry in the dictionary. It was
+**104,295 clips, 28.8 hours.** One for every entry in the dictionary. It was
 last in the generation order, behind the eleven expansions of quest text, and
 `Part.lua` — the file that tells the engine a word pack is installed at all —
 was under version control from the start, so the pack had somewhere to land.
@@ -27,7 +27,7 @@ It also needs [QuestWordHunter](https://github.com/Ironship/WordHunterWoW)
 itself, which the quest packs do not. A quest pack plays when a quest window
 opens, and the engine watches for that on its own. A word plays when somebody
 clicks one, and clicking a word is something only QuestWordHunter's panel
-offers — so without it these clips are 104,274 files nothing can reach.
+offers — so without it these clips are 104,295 files nothing can reach.
 
 Both are hard dependencies: without either, the client will not load this pack
 at all.
