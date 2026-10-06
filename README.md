@@ -1,58 +1,23 @@
 # QuestWordHunter — German Voiceover: Words
 
-Single German words, spoken. This is the pack the engine reaches for when you
-click a word, rather than when you open a quest.
+**121,904 German word recordings**, including 17,609 clips added from the expanded quest, item, spell and NPC corpus.
 
-**104,295 clips, 28.8 hours.** One for every entry in the dictionary. It was
-last in the generation order, behind the eleven expansions of quest text, and
-`Part.lua` — the file that tells the engine a word pack is installed at all —
-was under version control from the start, so the pack had somewhere to land.
+This repository keeps the master word audio. The normal download is [German Dictionary](https://github.com/Ironship/WordHunterWoW-Dictionary-DE), which includes these recordings and the reader in one addon. No separate word pack or engine is needed with that dictionary.
 
-Every clip has been listened to by a speech recogniser and checked against the
-word it was asked for, and 4,619 of them were respoken until the recogniser
-could hear the word in the replacement. The fault being repaired: the reader,
-given three characters and nothing else to align on, would sometimes invent
-several seconds of confident German around the word.
+The new clips use native German Voxtral voices, primarily `de_female` with `de_male` for some difficult replacements. Each Ogg is decoded and checked by the same German large-v3 recognizer used for the original pack. Defects such as repeated words, filler, long invented sentences and clipped output are queued for another take. Recognition can remain uncertain for unusual names and compounds; automatic checks are not human listening to every clip.
 
-Unlike a quest pack this one declares no range. A word's clip is named by a hash
-and there is nothing to compare, so the engine simply takes the one word pack it
-finds.
+The clip inventory and automatic check results are in `verification/words-20261006.jsonl`, with a summary in `verification/words-20261006.json`. All 17,754 planned new paths were generated and checked. The 145 still unconfirmed clips are withheld and listed in `verification/words-20261006-withheld.json`. They are not included in the download. One new path for the source typo `Díe` reuses the original `die` recording, with its source path and checksum in the inventory. These audit files are excluded from addon packages.
 
-## It does nothing on its own, and it needs two addons rather than one
+Nine damaged text fragments or opaque rune names added to the dictionary are ignored and excluded from this audio batch. Abbreviations such as `NSC`, `SGS` and `Std.` are read in full German. The original 104,295 recordings are preserved.
 
-Everything that decides when to play a clip is in the engine addon,
-[QuestWordHunter — German Voiceover](https://github.com/Ironship/WordHunterWoW-Voice-DE).
+## Compatibility pack
 
-It also needs [QuestWordHunter](https://github.com/Ironship/WordHunterWoW)
-itself, which the quest packs do not. A quest pack plays when a quest window
-opens, and the engine watches for that on its own. A word plays when somebody
-clicks one, and clicking a word is something only QuestWordHunter's panel
-offers — so without it these clips are 104,295 files nothing can reach.
+The standalone pack still depends on [QuestWordHunter](https://github.com/Ironship/WordHunterWoW) and the [German Voiceover engine](https://github.com/Ironship/WordHunterWoW-Voice-DE). Install either this older arrangement or the bundled German Dictionary: two packs claiming the same word audio have no defined priority.
 
-Both are hard dependencies: without either, the client will not load this pack
-at all.
+`sounds/` is committed. `Tools/build_pack.py` in the engine repository builds this compatibility pack; `Tools/build_dictionary_bundle.py` in addon-tools assembles the single-addon dictionary download.
 
-## The audio is in this repository
+## Clip paths
 
-`sounds/` is committed, and `.gitignore` says why. It is 804 MB here, out of
-about 6.1 gigabytes across the twelve packs. So a checkout of this repository is
-installable by itself: copy the folder into `Interface/AddOns` and it plays.
+`sounds/w/<first two hex digits>/<16 hex digits>.ogg`. The filename joins two 32-bit FNV-1a hashes of the UTF-8 key, using the prefix byte `01` for the second hash. `Tools/naming.py` and the engine's `Naming.lua` compute the same path. Keys retain German umlauts and eszett; hashed filenames avoid those characters in client file paths.
 
-`Tools/build_pack.py` in the engine repository assembles the same thing, and is
-the quicker route when the clips have just been regenerated:
-
-```
-python Tools/build_pack.py --only Words --out "…/Interface/AddOns"
-```
-
-## Where a clip lives
-
-`sounds\w\<first two hex digits>\<64-bit FNV-1a of the key>.ogg`. The name is
-a hash rather than the word because German keys carry umlauts and the eszett,
-and a WoW client does not reliably open a file whose path has those in it. The
-same hash is computed in `Tools/naming.py` and in `Naming.lua` in the engine
-repository, and `tests/naming.test.lua` holds the two to the same answers.
-
-Retail 12.1 (interface 120100) and Classic Era (11509) — one manifest each.
-GPL v3, see `LICENSE`. The audio carries CC BY-NC 4.0, which `NOTICE` sets out:
-this is given away and may not be sold.
+GPL v3, see `LICENSE`. Audio is CC BY-NC 4.0, see `NOTICE`; it may not be sold.

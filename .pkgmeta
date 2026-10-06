@@ -13,3 +13,6 @@
 package-as: WordHunterWoW-Voice-DE-Words
 
 enable-nolib-creation: no
+
+ignore:
+  - verification
